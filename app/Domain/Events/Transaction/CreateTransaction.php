@@ -28,13 +28,13 @@ class CreateTransaction
             $payer = Account::findOrFail($this->request->payer)->getEntity();
         } catch (ModelNotFoundException $e) {
             throw new AccountNotFoundException('Payer');
-        };
+        }
 
         try {
             $payee = Account::findOrFail($this->request->payee)->getEntity();
         } catch (ModelNotFoundException $e) {
             throw new AccountNotFoundException('Payee');
-        };
+        }
 
         $transaction = new Transaction();
         $transaction->setPayer($payer);
