@@ -2,7 +2,12 @@
 
 namespace App\Domain\Events\Transaction;
 
+use App\Domain\Entities\Transaction\Transaction;
+use App\Domain\Entities\Transaction\Status\Pending;
+use App\Domain\Exceptions\Transaction\AccountNotFoundException;
 use App\Infrastructure\ORM\Models\Account;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Queue\SerializesModels;
 
@@ -19,14 +24,23 @@ class CreateTransaction
 
     public function getTransaction(): Transaction
     {
-        $payer = Account::findOrFail($this->request->payer)->getEntity();
-        $payee = Account::findOrFail($this->request->payee)->getEntity();
-        $amount = $this->request->value;
+        try {
+            $payer = Account::findOrFail($this->request->payer)->getEntity();
+        } catch (ModelNotFoundException $e) {
+            throw new AccountNotFoundException('Payer');
+        };
+
+        try {
+            $payee = Account::findOrFail($this->request->payee)->getEntity();
+        } catch (ModelNotFoundException $e) {
+            throw new AccountNotFoundException('Payee');
+        };
 
         $transaction = new Transaction();
         $transaction->setPayer($payer);
         $transaction->setPayee($payee);
-        $transaction->setAmount($amount);
+        $transaction->setAmount($this->request->value);
+        $transaction->setTransactionStatus(new Pending());
         return $transaction;
     }
 }

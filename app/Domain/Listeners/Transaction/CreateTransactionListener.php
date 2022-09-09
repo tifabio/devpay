@@ -16,6 +16,6 @@ class CreateTransactionListener
 
     public function handle(CreateTransaction $event)
     {
-        return $this->service->create($event->getTransaction());
+        $this->service->create($event->getTransaction());
     }
 }

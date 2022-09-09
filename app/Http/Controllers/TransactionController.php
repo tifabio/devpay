@@ -25,6 +25,6 @@ class TransactionController extends Controller
             ],
         ]);
 
-        return event(new CreateTransaction($request));
+        event(new CreateTransaction($request));
     }
 }
