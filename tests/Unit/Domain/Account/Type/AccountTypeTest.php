@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Domain\Account\Type;
 
-use App\Domain\Account\Type\Customer;
-use App\Domain\Account\Type\Shopkeeper;
+use App\Domain\Entities\Account\Type\Customer;
+use App\Domain\Entities\Account\Type\Shopkeeper;
 use Tests\TestCase;
 
 class AccountTypeTest extends TestCase

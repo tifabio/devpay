@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Domain\Account;
+namespace App\Domain\Entities\Account;
 
-use App\Domain\Account\Type\AccountTypeInterface;
-use App\Domain\Account\Type\Shopkeeper;
+use App\Domain\Entities\Account\Type\AccountTypeInterface;
+use App\Domain\Entities\Account\Type\Shopkeeper;
 
 class Account
 {

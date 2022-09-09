@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Account\Type;
+namespace App\Domain\Entities\Account\Type;
 
 class Shopkeeper implements AccountTypeInterface
 {

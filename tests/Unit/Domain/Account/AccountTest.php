@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Domain\Account;
 
-use App\Domain\Account\Account;
-use App\Domain\Account\Type\Customer;
-use App\Domain\Account\Type\Shopkeeper;
+use App\Domain\Entities\Account\Account;
+use App\Domain\Entities\Account\Type\Customer;
+use App\Domain\Entities\Account\Type\Shopkeeper;
 use Tests\TestCase;
 use Faker\Factory as Faker;
 

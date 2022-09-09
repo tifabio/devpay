@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Domain\Account\Type;
 
-use App\Domain\Transaction\Status\Approved;
-use App\Domain\Transaction\Status\Canceled;
-use App\Domain\Transaction\Status\Finished;
-use App\Domain\Transaction\Status\Pending;
+use App\Domain\Entities\Transaction\Status\Approved;
+use App\Domain\Entities\Transaction\Status\Canceled;
+use App\Domain\Entities\Transaction\Status\Finished;
+use App\Domain\Entities\Transaction\Status\Pending;
 use Tests\TestCase;
 
 class TransactionStatusTest extends TestCase

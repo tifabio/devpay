@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Domain\Transaction;
+namespace App\Domain\Entities\Transaction;
 
-use App\Domain\Account\Account;
-use App\Domain\Transaction\Status\TransactionStatusInterface;
+use App\Domain\Entities\Account\Account;
+use App\Domain\Entities\Transaction\Status\TransactionStatusInterface;
 
 class Transaction
 {

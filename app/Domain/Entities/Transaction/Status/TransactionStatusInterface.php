@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Transaction\Status;
+namespace App\Domain\Entities\Transaction\Status;
 
 interface TransactionStatusInterface
 {

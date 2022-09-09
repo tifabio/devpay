@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Domain\Transaction;
 
-use App\Domain\Account\Account;
-use App\Domain\Transaction\Transaction;
-use App\Domain\Transaction\Status\Pending;
+use App\Domain\Entities\Account\Account;
+use App\Domain\Entities\Transaction\Transaction;
+use App\Domain\Entities\Transaction\Status\Pending;
 use Tests\TestCase;
 use Faker\Factory as Faker;
 
