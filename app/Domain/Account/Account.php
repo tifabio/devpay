@@ -7,84 +7,61 @@ use App\Domain\Account\Type\Shopkeeper;
 
 class Account
 {
-    private string $uuid;
     private string $name;
     private string $document;
     private string $email;
     private string $password;
     private float  $balance;
     private AccountTypeInterface $accountType;
- 
-    public function getUuid()
-    {
-        return $this->uuid;
-    }
 
-    public function setUuid($uuid)
-    {
-        $this->uuid = $uuid;
-
-        return $this;
-    }
-
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
-
-        return $this;
     }
 
-    public function getDocument()
+    public function getDocument(): string
     {
         return $this->document;
     }
 
-    public function setDocument($document)
+    public function setDocument(string $document)
     {
         $this->document = $document;
-
-        return $this;
     }
 
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    public function setEmail($email)
+    public function setEmail(string $email)
     {
         $this->email = $email;
-
-        return $this;
     }
 
-    public function getPassword()
+    public function getPassword(): string
     {
         return $this->password;
     }
 
-    public function setPassword($password)
+    public function setPassword(string $password)
     {
         $this->password = $password;
-
-        return $this;
     }
 
-    public function getBalance()
+    public function getBalance(): float
     {
         return $this->balance;
     }
 
-    public function setBalance($balance)
+    public function setBalance(float $balance)
     {
         $this->balance = $balance;
-
-        return $this;
     }
 
     public function getAccountType(): AccountTypeInterface
@@ -95,8 +72,6 @@ class Account
     public function setAccountType(AccountTypeInterface $accountType)
     {
         $this->accountType = $accountType;
-
-        return $this;
     }
 
     public function isShopkeeper(): bool
