@@ -7,21 +7,10 @@ use App\Domain\Entities\Transaction\Status\TransactionStatusInterface;
 
 class Transaction
 {
-    private string $uuid;
     private Account $payer;
     private Account $payee;
     private float $amount;
     private TransactionStatusInterface $transactionStatus;
-
-    public function getUuid(): string
-    {
-        return $this->uuid;
-    }
-
-    public function setUuid(string $uuid)
-    {
-        $this->uuid = $uuid;
-    }
 
     public function getPayer(): Account
     {

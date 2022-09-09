@@ -25,7 +25,6 @@ class CreateTransaction
         $payer->setAccountType(new Shopkeeper());
 
         $transaction = new Transaction();
-        $transaction->setUuid(uniqid());
         $transaction->setPayer($payer);
         $transaction->setPayee(new Account());
         $transaction->setAmount($this->request->value);

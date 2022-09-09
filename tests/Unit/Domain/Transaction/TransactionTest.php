@@ -14,20 +14,17 @@ class TransactionTest extends TestCase
     {
         $faker = Faker::create('pt_BR');
 
-        $uuid = $faker->uuid;
         $payer = new Account();
         $payee = new Account();
         $amout = $faker->randomDigit;
         $transactionStatus = new Pending();
 
         $transaction = new Transaction();
-        $transaction->setUuid($uuid);
         $transaction->setPayer($payer);
         $transaction->setPayee($payee);
         $transaction->setAmount($amout);
         $transaction->setTransactionStatus($transactionStatus);
 
-        $this->assertEquals($uuid, $transaction->getUuid());
         $this->assertEquals($payer, $transaction->getPayer());
         $this->assertEquals($payee, $transaction->getPayee());
         $this->assertEquals($amout, $transaction->getAmount());
