@@ -2,9 +2,7 @@
 
 namespace App\Domain\Events\Transaction;
 
-use App\Domain\Entities\Account\Account;
-use App\Domain\Entities\Account\Type\Shopkeeper;
-use App\Domain\Entities\Transaction\Transaction;
+use App\Infrastructure\ORM\Models\Account;
 use Illuminate\Http\Request;
 use Illuminate\Queue\SerializesModels;
 
@@ -21,13 +19,14 @@ class CreateTransaction
 
     public function getTransaction(): Transaction
     {
-        $payer = new Account();
-        $payer->setAccountType(new Shopkeeper());
+        $payer = Account::findOrFail($this->request->payer)->getEntity();
+        $payee = Account::findOrFail($this->request->payee)->getEntity();
+        $amount = $this->request->value;
 
         $transaction = new Transaction();
         $transaction->setPayer($payer);
-        $transaction->setPayee(new Account());
-        $transaction->setAmount($this->request->value);
+        $transaction->setPayee($payee);
+        $transaction->setAmount($amount);
         return $transaction;
     }
 }
