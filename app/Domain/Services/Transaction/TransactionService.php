@@ -37,8 +37,7 @@ class TransactionService
     {
         $transaction->setTransactionStatus(new Canceled());
 
-        $transactionAuthorized = $this->authorizerService->isAuthorized($transaction);
-        if($transactionAuthorized) {
+        if($this->authorizerService->isAuthorized($transaction)) {
             $transaction->setTransactionStatus(new Approved());
         }
 

@@ -4,6 +4,7 @@ namespace Tests\Feature\Transaction;
 
 use App\Domain\Entities\Transaction\Transaction;
 use App\Domain\Services\Transaction\TransactionService;
+use App\Domain\Entities\Transaction\Status\Approved;
 use App\Domain\Entities\Transaction\Status\Pending;
 use App\Infrastructure\ORM\Models\Account;
 use App\Infrastructure\ORM\Models\Transaction as TransactionModel;
@@ -31,8 +32,8 @@ class TransactionServiceTest extends TestCase
     public function testAuthorizeTransaction()
     {
         $transaction = $this->mockTransaction();
-        $createTransaction = $this->service->authorize($transaction);
-        $this->assertTrue($createTransaction instanceof Transaction);
+        $authorizedTransaction = $this->service->authorize($transaction);
+        $this->assertTrue($authorizedTransaction->getTransactionStatus() instanceof Approved);
     }
 
     private function mockTransaction(): Transaction

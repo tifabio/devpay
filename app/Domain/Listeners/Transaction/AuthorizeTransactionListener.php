@@ -18,8 +18,6 @@ class AuthorizeTransactionListener
     {
         $transaction = $event->getTransaction();
 
-        $t = $this->service->authorize($transaction);
-
-        dd($t);
+        event(new UpdateTransaction($this->service->authorize($transaction)));
     }
 }
