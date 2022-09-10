@@ -3,7 +3,6 @@
 namespace App\Domain\Events\Transaction;
 
 use App\Domain\Entities\Transaction\Transaction;
-use App\Domain\Entities\Transaction\Status\Pending;
 use App\Domain\Exceptions\Transaction\AccountNotFoundException;
 use App\Infrastructure\ORM\Models\Account;
 use Exception;
@@ -40,7 +39,6 @@ class CreateTransaction
         $transaction->setPayer($payer);
         $transaction->setPayee($payee);
         $transaction->setAmount($this->request->value);
-        $transaction->setTransactionStatus(new Pending());
         return $transaction;
     }
 }
