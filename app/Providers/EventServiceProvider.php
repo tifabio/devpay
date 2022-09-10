@@ -15,5 +15,8 @@ class EventServiceProvider extends ServiceProvider
         \App\Domain\Events\Transaction\CreateTransaction::class => [
             \App\Domain\Listeners\Transaction\CreateTransactionListener::class,
         ],
+        \App\Domain\Events\Transaction\AuthorizeTransaction::class => [
+            \App\Domain\Listeners\Transaction\AuthorizeTransactionListener::class,
+        ],
     ];
 }

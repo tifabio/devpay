@@ -28,6 +28,13 @@ class TransactionServiceTest extends TestCase
         $this->assertTrue($createTransaction instanceof TransactionModel);
     }
 
+    public function testAuthorizeTransaction()
+    {
+        $transaction = $this->mockTransaction();
+        $createTransaction = $this->service->authorize($transaction);
+        $this->assertTrue($createTransaction instanceof Transaction);
+    }
+
     private function mockTransaction(): Transaction
     {
         $accountModel = app(Account::class);
@@ -37,7 +44,7 @@ class TransactionServiceTest extends TestCase
             'name' => $faker->name,
             'document' => $faker->cpf,
             'email' => $faker->email,
-            'password' => $faker->password,
+            'password' => md5($faker->password),
             'balance' => 200,
             'account_type' => 'CUSTOMER'
         ])->getEntity();
@@ -46,7 +53,7 @@ class TransactionServiceTest extends TestCase
             'name' => $faker->name,
             'document' => $faker->cnpj,
             'email' => $faker->email,
-            'password' => $faker->password,
+            'password' => md5($faker->password),
             'balance' => 0,
             'account_type' => 'SHOPKEEPER'
         ])->getEntity();

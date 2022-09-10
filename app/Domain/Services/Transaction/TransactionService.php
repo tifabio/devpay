@@ -25,8 +25,9 @@ class TransactionService
         return $this->transactionRepo->createTransaction($transaction);
     }
 
-    public function authorize()
+    public function authorize(Transaction $transaction)
     {
+        return $transaction;
         // call authorizer
         // update status
         // upadte transaction in db

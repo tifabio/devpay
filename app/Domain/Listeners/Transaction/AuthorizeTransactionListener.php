@@ -2,11 +2,10 @@
 
 namespace App\Domain\Listeners\Transaction;
 
-use App\Domain\Events\Transaction\CreateTransaction;
 use App\Domain\Events\Transaction\AuthorizeTransaction;
 use App\Domain\Services\Transaction\TransactionService;
 
-class CreateTransactionListener
+class AuthorizeTransactionListener
 {
     private TransactionService $service;
 
@@ -15,12 +14,10 @@ class CreateTransactionListener
         $this->service = $service;
     }
 
-    public function handle(CreateTransaction $event)
+    public function handle(AuthorizeTransaction $event)
     {
         $transaction = $event->getTransaction();
 
-        $this->service->create($transaction);
-
-        event(new AuthorizeTransaction($transaction));
+        $this->service->authorize($transaction);
     }
 }
