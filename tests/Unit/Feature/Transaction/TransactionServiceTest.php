@@ -44,7 +44,7 @@ class TransactionServiceTest extends TestCase
             'name' => $faker->name,
             'document' => $faker->cpf,
             'email' => $faker->email,
-            'password' => md5($faker->password),
+            'password' => password_hash($faker->password, PASSWORD_BCRYPT),
             'balance' => 200,
             'account_type' => 'CUSTOMER'
         ])->getEntity();
@@ -53,7 +53,7 @@ class TransactionServiceTest extends TestCase
             'name' => $faker->name,
             'document' => $faker->cnpj,
             'email' => $faker->email,
-            'password' => md5($faker->password),
+            'password' => password_hash($faker->password, PASSWORD_BCRYPT),
             'balance' => 0,
             'account_type' => 'SHOPKEEPER'
         ])->getEntity();
