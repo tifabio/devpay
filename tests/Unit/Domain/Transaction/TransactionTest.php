@@ -5,6 +5,7 @@ namespace Tests\Unit\Domain\Transaction;
 use App\Domain\Entities\Account\Account;
 use App\Domain\Entities\Transaction\Transaction;
 use App\Domain\Entities\Transaction\Status\Pending;
+use App\Domain\Entities\Transaction\Status\Approved;
 use Tests\TestCase;
 use Faker\Factory as Faker;
 
@@ -29,5 +30,12 @@ class TransactionTest extends TestCase
         $this->assertEquals($payee, $transaction->getPayee());
         $this->assertEquals($amout, $transaction->getAmount());
         $this->assertEquals($transactionStatus, $transaction->getTransactionStatus());
+    }
+
+    public function testTransactionIsApproved()
+    {
+        $transaction = new Transaction();
+        $transaction->setTransactionStatus(new Approved());
+        $this->assertTrue($transaction->isApproved());
     }
 }

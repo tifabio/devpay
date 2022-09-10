@@ -16,7 +16,7 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->float('amount', 10, 2);
-            $table->enum('transfer_status', ['APPROVED', 'CANCELED', 'FINISHED', 'PENDING']);
+            $table->string('transaction_status');
             $table->timestamps();
 
             $table->foreignId('payer_id')->constrained('accounts', 'id');

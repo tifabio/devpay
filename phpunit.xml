@@ -16,7 +16,7 @@
     </php>
     <coverage>
         <include>
-            <directory suffix=".php">app</directory>
+            <directory suffix=".php">app/Domain</directory>
         </include>
     </coverage>
 </phpunit>

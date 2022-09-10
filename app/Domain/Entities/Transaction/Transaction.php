@@ -4,6 +4,7 @@ namespace App\Domain\Entities\Transaction;
 
 use App\Domain\Entities\Account\Account;
 use App\Domain\Entities\Transaction\Status\TransactionStatusInterface;
+use App\Domain\Entities\Transaction\Status\Approved;
 
 class Transaction
 {
@@ -50,5 +51,10 @@ class Transaction
     public function setTransactionStatus(TransactionStatusInterface $transactionStatus)
     {
         $this->transactionStatus = $transactionStatus;
+    }
+
+    public function isApproved(): bool
+    {
+        return $this->transactionStatus instanceof Approved;
     }
 }

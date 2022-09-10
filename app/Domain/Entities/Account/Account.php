@@ -7,12 +7,23 @@ use App\Domain\Entities\Account\Type\Shopkeeper;
 
 class Account
 {
+    private int $uid;
     private string $name;
     private string $document;
     private string $email;
     private string $password;
     private float  $balance;
     private AccountTypeInterface $accountType;
+
+    public function getUid(): int
+    {
+        return $this->uid;
+    }
+
+    public function setUid(int $uid)
+    {
+        $this->uid = $uid;
+    }
 
     public function getName(): string
     {

@@ -21,6 +21,7 @@ class Account extends Model
     public function getEntity()
     {
         $entity = new Entity();
+        $entity->setUid($this->id);
         $entity->setName($this->name);
         $entity->setDocument($this->document);
         $entity->setEmail($this->email);

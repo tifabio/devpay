@@ -14,6 +14,7 @@ class AccountTest extends TestCase
     {
         $faker = Faker::create('pt_BR');
 
+        $uid = $faker->randomDigit;
         $name = $faker->name;
         $document = $faker->cpf;
         $email = $faker->email;
@@ -22,6 +23,7 @@ class AccountTest extends TestCase
         $accountType = new Customer();
 
         $account = new Account();
+        $account->setUid($uid);
         $account->setName($name);
         $account->setDocument($document);
         $account->setEmail($email);
@@ -29,6 +31,7 @@ class AccountTest extends TestCase
         $account->setBalance($balance);
         $account->setAccountType($accountType);
 
+        $this->assertEquals($uid, $account->getUid());
         $this->assertEquals($name, $account->getName());
         $this->assertEquals($document, $account->getDocument());
         $this->assertEquals($email, $account->getEmail());

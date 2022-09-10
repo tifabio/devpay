@@ -20,7 +20,7 @@ class CreateAccountsTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->float('balance', 10, 2)->default(0);
-            $table->enum('account_type', ['CUSTOMER', 'SHOPKEEPER']);
+            $table->string('account_type');
             $table->timestamps();
         });
     }
