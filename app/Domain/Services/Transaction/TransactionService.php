@@ -22,7 +22,7 @@ class TransactionService
     public function create(Transaction $transaction)
     {
         $this->validatorService->validate($transaction);
-        $this->transactionRepo->createTransaction($transaction);
+        return $this->transactionRepo->createTransaction($transaction);
     }
 
     public function authorize()
