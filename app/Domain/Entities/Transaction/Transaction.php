@@ -8,10 +8,21 @@ use App\Domain\Entities\Transaction\Status\Approved;
 
 class Transaction
 {
+    private int $uid;
     private Account $payer;
     private Account $payee;
     private float $amount;
     private TransactionStatusInterface $transactionStatus;
+
+    public function getUid(): int
+    {
+        return $this->uid;
+    }
+
+    public function setUid(int $uid)
+    {
+        $this->uid = $uid;
+    }
 
     public function getPayer(): Account
     {

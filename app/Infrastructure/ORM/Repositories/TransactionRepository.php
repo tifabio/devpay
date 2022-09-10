@@ -16,4 +16,12 @@ class TransactionRepository
             'transaction_status' => $transaction->getTransactionStatus()->getType()
         ]);
     }
+
+    public function cancelTransaction(Transaction $transaction)
+    {
+        return Model::where('id', $transaction->getUid())
+                    ->update([
+                        'transaction_status' => $transaction->getTransactionStatus()->getType()
+                    ]);
+    }
 }

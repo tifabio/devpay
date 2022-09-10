@@ -19,7 +19,8 @@ class CreateTransactionListener
     {
         $transaction = $event->getTransaction();
 
-        $this->service->create($transaction);
+        $createdTransaction = $this->service->create($transaction);
+        $transaction->setUid($createdTransaction->id);
 
         event(new AuthorizeTransaction($transaction));
     }

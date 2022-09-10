@@ -44,11 +44,14 @@ class TransactionService
         return $transaction;
     }    
 
-    public function update()
+    public function update(Transaction $transaction)
     {
-        // check transaction approved
-        // if !approved update status to canceled
-        // revalidate
+        $this->validatorService->validate($transaction);
+
+        if(!$transaction->isApproved()) {
+            return $this->transactionRepo->cancelTransaction($transaction);
+        }
+        
         // begin db transaction
         // commit db transaction
         // trigger event notification

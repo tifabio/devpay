@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Domain\Events\Transaction\CreateTransaction;
+use App\Domain\Events\Transaction\AuthorizeTransaction;
+use App\Domain\Events\Transaction\UpdateTransaction;
+use App\Domain\Listeners\Transaction\CreateTransactionListener;
+use App\Domain\Listeners\Transaction\AuthorizeTransactionListener;
+use App\Domain\Listeners\Transaction\UpdateTransactionListener;
 use Laravel\Lumen\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -12,11 +18,14 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        \App\Domain\Events\Transaction\CreateTransaction::class => [
-            \App\Domain\Listeners\Transaction\CreateTransactionListener::class,
+        CreateTransaction::class => [
+            CreateTransactionListener::class,
         ],
-        \App\Domain\Events\Transaction\AuthorizeTransaction::class => [
-            \App\Domain\Listeners\Transaction\AuthorizeTransactionListener::class,
+        AuthorizeTransaction::class => [
+            AuthorizeTransactionListener::class,
+        ],
+        UpdateTransaction::class => [
+            UpdateTransactionListener::class,
         ],
     ];
 }
