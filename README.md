@@ -19,3 +19,16 @@ $ docker-compose up -d
 ```sh
 $ docker-compose exec app vendor/bin/phpunit
 ```
+
+### Request example:
+
+```
+curl -X POST \
+  'http://localhost:8080/api/transaction' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+  "value": 50.00,
+  "payer": 1,
+  "payee": 2
+}'
+```
