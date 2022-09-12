@@ -19,5 +19,3 @@ $ docker-compose up -d
 ```sh
 $ docker-compose exec app vendor/bin/phpunit
 ```
-
-### API Documentation:
