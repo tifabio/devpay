@@ -48,6 +48,7 @@ class TransactionService
     public function update(Transaction $transaction)
     {
         if(!$transaction->isApproved()) {
+            $transaction->setTransactionStatus(new Canceled());
             return $this->transactionRepo->cancelTransaction($transaction);
         }
         
