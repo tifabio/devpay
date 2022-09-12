@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Domain\Account\Type;
+namespace Tests\Unit\Domain\Transaction\Status;
 
 use App\Domain\Entities\Transaction\Status\Approved;
 use App\Domain\Entities\Transaction\Status\Canceled;
