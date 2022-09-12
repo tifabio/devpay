@@ -2,11 +2,10 @@
 
 namespace App\Domain\Listeners\Notification;
 
-use App\Domain\Events\Notification\CreateNotification;
 use App\Domain\Events\Notification\SendNotification;
 use App\Domain\Services\Notification\NotificationService;
 
-class CreateNotificationListener
+class SendNotificationListener
 {
     private NotificationService $service;
 
@@ -15,13 +14,10 @@ class CreateNotificationListener
         $this->service = $service;
     }
 
-    public function handle(CreateNotification $event)
+    public function handle(SendNotification $event)
     {
         $notification = $event->getNotification();
 
-        $createdNotification = $this->service->create($notification);
-        $notification->setUid($createdNotification->id);
-        
-        event(new SendNotification($notification));
+        $this->service->send($notification);
     }
 }
