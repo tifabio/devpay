@@ -2,9 +2,9 @@
 
 namespace App\Domain\Services\Vendor\Notifier;
 
-use App\Domain\Entities\Transaction\Transaction;
+use App\Domain\Entities\Notification\Notification;
 
 interface NotifierServiceInterface
 {
-    public function sendNotification(Transaction $transaction): bool;
+    public function sendNotification(Notification $notification): bool;
 }

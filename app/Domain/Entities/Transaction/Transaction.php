@@ -68,4 +68,9 @@ class Transaction
     {
         return $this->transactionStatus instanceof Approved;
     }
+
+    public function getNotificationContent()
+    {
+        return "{$this->payer->getName()} sent you {$this->getAmount()}";
+    }   
 }

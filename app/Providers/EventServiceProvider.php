@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Domain\Events\Notification\CreateNotification;
 use App\Domain\Events\Transaction\CreateTransaction;
 use App\Domain\Events\Transaction\AuthorizeTransaction;
 use App\Domain\Events\Transaction\UpdateTransaction;
+use App\Domain\Listeners\Notification\CreateNotificationListener;
 use App\Domain\Listeners\Transaction\CreateTransactionListener;
 use App\Domain\Listeners\Transaction\AuthorizeTransactionListener;
 use App\Domain\Listeners\Transaction\UpdateTransactionListener;
@@ -26,6 +28,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         UpdateTransaction::class => [
             UpdateTransactionListener::class,
+        ],
+        CreateNotification::class => [
+            CreateNotificationListener::class,
         ],
     ];
 }

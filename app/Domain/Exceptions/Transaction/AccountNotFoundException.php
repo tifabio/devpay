@@ -10,7 +10,7 @@ class AccountNotFoundException extends Exception
     public function render(): Response
     {
         $status = 400;
-        $error = sprintf("%s Account Not Found", $this->getMessage());
+        $error = "{$this->getMessage()} Account Not Found";
 
         return response(["error" => $error], $status);
     }
