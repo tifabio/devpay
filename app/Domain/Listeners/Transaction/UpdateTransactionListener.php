@@ -18,6 +18,8 @@ class UpdateTransactionListener
     {
         $transaction = $event->getTransaction();
 
-        $this->service->update($transaction);
+        $a = $this->service->update($transaction);
+        
+        dd($a);
     }
 }

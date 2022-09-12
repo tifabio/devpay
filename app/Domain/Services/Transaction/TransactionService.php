@@ -9,6 +9,7 @@ use App\Domain\Entities\Transaction\Status\Pending;
 use App\Domain\Services\Transaction\Validator\TransactionValidatorServiceInterface;
 use App\Domain\Services\Vendor\Authorizer\AuthorizerServiceInterface;
 use App\Infrastructure\ORM\Repositories\TransactionRepository;
+use Exception;
 
 class TransactionService
 {
@@ -46,14 +47,18 @@ class TransactionService
 
     public function update(Transaction $transaction)
     {
-        $this->validatorService->validate($transaction);
-
         if(!$transaction->isApproved()) {
             return $this->transactionRepo->cancelTransaction($transaction);
         }
         
-        // begin db transaction
-        // commit db transaction
-        // trigger event notification
+        // Revalidate if payer has balance
+        try {
+            $this->validatorService->validate($transaction);
+        } catch (Exception $e) {
+            $transaction->setTransactionStatus(new Canceled());
+            return $this->transactionRepo->cancelTransaction($transaction);
+        }
+
+        return $this->transactionRepo->finishTransaction($transaction);
     } 
 }

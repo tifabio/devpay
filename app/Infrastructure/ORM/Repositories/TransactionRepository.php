@@ -3,7 +3,10 @@
 namespace App\Infrastructure\ORM\Repositories;
 
 use App\Domain\Entities\Transaction\Transaction;
+use App\Domain\Entities\Transaction\Status\Finished;
 use App\Infrastructure\ORM\Models\Transaction as Model;
+use App\Infrastructure\ORM\Models\Account as AccountModel;
+use Illuminate\Support\Facades\DB;
 
 class TransactionRepository
 {
@@ -19,9 +22,38 @@ class TransactionRepository
 
     public function cancelTransaction(Transaction $transaction)
     {
-        return Model::where('id', $transaction->getUid())
-                    ->update([
-                        'transaction_status' => $transaction->getTransactionStatus()->getType()
-                    ]);
+        Model::where('id', $transaction->getUid())
+            ->update([
+                'transaction_status' => $transaction->getTransactionStatus()->getType()
+            ]);
+
+        return $transaction;
+    }
+
+    public function finishTransaction(Transaction $transaction)
+    {
+        DB::transaction(function () use ($transaction) {
+            $payer = $transaction->getPayer();
+            $payee = $transaction->getPayee();
+
+            AccountModel::where('id', $payer->getUid())
+                ->update([
+                    'balance' => $payer->getBalance() - $transaction->getAmount()
+                ]);
+
+            AccountModel::where('id', $payee->getUid())
+                ->update([
+                    'balance' => $payee->getBalance() + $transaction->getAmount()
+                ]);
+
+            $transaction->setTransactionStatus(new Finished());
+
+            Model::where('id', $transaction->getUid())
+                ->update([
+                    'transaction_status' => $transaction->getTransactionStatus()->getType()
+                ]);
+        });
+
+        return $transaction;
     }
 }

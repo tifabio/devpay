@@ -19,9 +19,11 @@ class UpdateTransaction
 
     public function getTransaction(): Transaction
     {
-        // Retrieve payer updated db data
+        // Retrieve payer/payee updated db data
         $payer = Account::find($this->transaction->getPayer()->getUid())->getEntity();
+        $payee = Account::find($this->transaction->getPayee()->getUid())->getEntity();
         $this->transaction->setPayer($payer);
+        $this->transaction->setPayee($payee);
         return $this->transaction;
     }
 }
