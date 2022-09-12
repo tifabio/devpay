@@ -4,6 +4,7 @@ namespace App\Domain\Listeners\Transaction;
 
 use App\Domain\Events\Transaction\UpdateTransaction;
 use App\Domain\Services\Transaction\TransactionService;
+use App\Domain\Entities\Transaction\Status\Finished;
 
 class UpdateTransactionListener
 {
@@ -18,8 +19,10 @@ class UpdateTransactionListener
     {
         $transaction = $event->getTransaction();
 
-        $a = $this->service->update($transaction);
+        $updateTransaction = $this->service->update($transaction);
         
-        dd($a);
+        if($updateTransaction->getTransactionStatus() instanceof Finished) {
+            event(new SendNotification($transaction));
+        }
     }
 }
