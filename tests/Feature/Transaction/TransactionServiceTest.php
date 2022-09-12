@@ -25,21 +25,21 @@ class TransactionServiceTest extends TestCase
         $this->payerInitBalance = 200;
     }
 
-    public function testCreateTransaction()
+    public function testCreateTransaction(): void
     {
         $transaction = $this->mockTransaction();
         $createTransaction = $this->service->create($transaction);
         $this->assertTrue($createTransaction instanceof TransactionModel);
     }
 
-    public function testAuthorizeTransaction()
+    public function testAuthorizeTransaction(): void
     {
         $transaction = $this->mockTransaction();
         $authorizeTransaction = $this->service->authorize($transaction);
         $this->assertTrue($authorizeTransaction->getTransactionStatus() instanceof Approved);
     }
 
-    public function testUpdateTransaction()
+    public function testUpdateTransaction(): void
     {
         $transaction = $this->mockTransaction();
         $createTransaction = $this->service->create($transaction);
