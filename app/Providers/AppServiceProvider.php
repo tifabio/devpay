@@ -7,6 +7,7 @@ use App\Domain\Services\Transaction\TransactionService;
 use App\Domain\Services\Transaction\Validator\TransactionValidatorService;
 use App\Domain\Services\Vendor\Authorizer\MockyAuthorizerService;
 use App\Domain\Services\Vendor\Notifier\MockyNotifierService;
+use App\Infrastructure\ORM\Repositories\NotificationRepository;
 use App\Infrastructure\ORM\Repositories\TransactionRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,9 +33,11 @@ class AppServiceProvider extends ServiceProvider
         });
         $this->app->bind(NotificationService::class, function () {
             $notifierService = new MockyNotifierService();
+            $notificationRepository = new NotificationRepository();
 
             return new NotificationService(
                 $notifierService, 
+                $notificationRepository, 
             );
         });
     }
