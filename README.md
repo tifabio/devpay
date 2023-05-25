@@ -1,4 +1,4 @@
-# devpay
+# DevPay
 
 ### Steps to install:
 
@@ -31,4 +31,19 @@ curl -X POST \
   "payer": 1,
   "payee": 2
 }'
+```
+
+### Business rules:
+
+```mermaid
+C4Context
+
+Person(customer, "Customer")
+Person(shopkeeper, "Shopkeeper")
+System(devpay, "DevPay")
+
+BiRel(customer, devpay, "Can receive/transfer")
+Rel(devpay, shopkeeper, "Can receive")
+
+UpdateLayoutConfig($c4ShapeInRow="2")
 ```
